@@ -26,19 +26,18 @@ func main() {
 		utils.Check(err)
 
 		switch mode := file.Mode(); {
-		case mode.IsDir():
-			// TODO
 
+		// Pack folder to .pack
+		case mode.IsDir():
 			var pack packs.Pack
 			pack.LoadFromDir(path)
-			pack.Display()
-			pack.WritePack(".", "Assets_256.pack") // TODO: inc number
+			pack.WritePack("Packed", "Assets_256")
 
+		// Unpack .pack
 		case mode.IsRegular():
 			var pack packs.Pack
 			pack.LoadFromFile(path)
-			pack.Display()
-			pack.Unpack(".")
+			pack.Unpack("Unpacked")
 		}
 	}
 }
